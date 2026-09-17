@@ -465,7 +465,8 @@ dialog.case[open]{animation:dlgin .35s cubic-bezier(.22,1,.36,1)}
 
 
 /* MediCare BD */
-.mc-land{display:block;width:100%;height:100%;min-height:300px;object-fit:cover;object-position:top center;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.mc-vis{position:relative}
+.mc-land{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .proj.feat:hover .mc-land{transform:scale(1.03)}
 .mc-vis{padding:0!important;overflow:hidden;background:radial-gradient(circle at 30% 20%,color-mix(in srgb,var(--teal) 30%,transparent),transparent 60%),var(--bg3)}
 .mc-shot{width:100%;max-width:520px;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:0 24px 50px -26px #000;background:#fff;transform:rotate(-1.5deg);transition:transform .45s cubic-bezier(.22,1,.36,1)}
@@ -492,6 +493,17 @@ dialog.case[open]{animation:dlgin .35s cubic-bezier(.22,1,.36,1)}
 .note-src{font-size:13px;color:var(--muted);font-style:italic}
 dialog.case#mc-dlg{width:min(1040px,calc(100vw - 32px))}
 @media (max-width:700px){.stats3.s4,.shots2{grid-template-columns:1fr 1fr}.shots2{grid-template-columns:1fr}}
+
+
+
+.latest{position:absolute;top:16px;left:16px;z-index:3;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--teal);padding:6px 12px;border-radius:999px;box-shadow:0 0 18px -4px var(--teal)}
+.latest i{width:7px;height:7px;border-radius:50%;background:var(--bg);animation:pulse 1.6s infinite}
+/* HNR glow */
+.proj.feat.glow{border-color:color-mix(in srgb,var(--teal) 55%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--teal) 25%,transparent),-18px 0 44px -18px color-mix(in srgb,var(--teal) 70%,transparent),18px 0 44px -18px color-mix(in srgb,var(--plum) 70%,transparent);animation:hnrglow 4s ease-in-out infinite}
+.proj.feat.glow:hover{border-color:var(--teal);box-shadow:0 0 0 1px color-mix(in srgb,var(--teal) 40%,transparent),-22px 0 56px -16px color-mix(in srgb,var(--teal) 85%,transparent),22px 0 56px -16px color-mix(in srgb,var(--plum) 85%,transparent)}
+@keyframes hnrglow{50%{box-shadow:0 0 0 1px color-mix(in srgb,var(--teal) 35%,transparent),-24px 0 60px -18px color-mix(in srgb,var(--teal) 80%,transparent),24px 0 60px -18px color-mix(in srgb,var(--plum) 80%,transparent)}}
+.scroller{overflow:visible!important}
+@media (prefers-reduced-motion:reduce){.proj.feat.glow{animation:none}}
 
 /* contact */
 .contact{padding-bottom:40px;position:relative;overflow:hidden}
@@ -733,7 +745,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="head"><div><div class="eyebrow">04 · Selected work</div><h2 class="scr">Things I <em>built</em></h2></div>
     </div>
     <div class="scroller" id="scroller" aria-label="Projects">
-      <article class="proj feat" style="--c:var(--teal)">
+      <article class="proj feat glow" style="--c:var(--teal)">
+        <span class="latest"><i></i>Latest</span>
         <div class="vis">
           <div class="v-hnr" aria-hidden="true">
             <div class="hn-row">
