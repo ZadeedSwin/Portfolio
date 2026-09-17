@@ -400,6 +400,71 @@ section{padding-block:clamp(72px,10vw,130px)}
 @media (max-width:640px){.scroller > .proj:last-child{grid-column:auto}}
 @media (max-width:640px){.scroller{grid-template-columns:1fr}}
 
+
+/* featured project + case study */
+.scroller > .proj.feat{grid-column:1/-1;flex-direction:row}
+.proj.feat .vis{height:auto;flex:1.1;min-height:300px;border-bottom:0;border-right:1px solid var(--line);padding:22px}
+.proj.feat .body{flex:1;align-content:center;padding:28px 30px}
+.proj.feat h3{font-size:clamp(36px,4vw,52px)}
+.v-hnr{width:100%;display:grid;gap:22px;font-family:var(--mono)}
+.hn-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.hn-row > i{font-style:normal;color:var(--muted)}
+.hn-img{display:flex;gap:2px;background:#f5f1e8;border-radius:8px;padding:6px 10px}
+.hn-img span{font-family:"Segoe Script","Bradley Hand","Comic Sans MS",cursive;font-size:30px;color:#141414;line-height:1;transform:rotate(-6deg)}
+.hn-img span:nth-child(2){transform:rotate(4deg) translateY(3px)}
+.hn-seg{display:flex;gap:5px}
+.hn-seg b{width:30px;height:38px;display:grid;place-items:center;border:2px dashed var(--sun);border-radius:6px;color:var(--sun);font-size:18px}
+.hn-cnn{position:relative;display:flex;gap:4px;align-items:center;padding:8px 10px 18px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.hn-cnn em{display:block;width:8px;border-radius:2px;background:var(--mag)}
+.hn-cnn em:nth-child(1){height:34px}.hn-cnn em:nth-child(2){height:26px;background:var(--plum)}.hn-cnn em:nth-child(3){height:18px;background:var(--plum)}.hn-cnn em:nth-child(4){height:10px;background:var(--teal)}
+.hn-cnn small{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-size:9.5px;color:var(--muted)}
+.hn-out{font-family:var(--disp);font-weight:900;font-size:40px;color:var(--teal);padding:0 12px;border-radius:10px;background:color-mix(in srgb,var(--teal) 14%,transparent)}
+.hn-acc{display:grid;gap:9px;font-size:11.5px}
+.hn-acc div{display:grid;grid-template-columns:minmax(0,170px) 1fr 58px;gap:10px;align-items:center}
+.hn-acc span{color:var(--muted)}
+.hn-acc i{display:block;height:8px;border-radius:5px;background:linear-gradient(90deg,var(--muted) var(--w),var(--bg3) var(--w))}
+.hn-acc i.lo{background:linear-gradient(90deg,var(--mag) var(--w),var(--bg3) var(--w))}
+.hn-acc i.hi{background:linear-gradient(90deg,var(--teal) var(--w),var(--bg3) var(--w))}
+.hn-acc b{text-align:right;font-variant-numeric:tabular-nums}
+.pbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pbtns .btn{padding:11px 16px;font-size:13px;cursor:pointer;font-family:var(--mono)}
+.pbtns .btn.b{color:var(--text)}
+@media (max-width:860px){.scroller > .proj.feat{flex-direction:column}.proj.feat .vis{border-right:0;border-bottom:1px solid var(--line)}.proj.feat .body{padding:22px 24px 26px}}
+@media (max-width:520px){.hn-acc div{grid-template-columns:1fr 50px}.hn-acc span{grid-column:1/-1}.hn-acc i{grid-column:1}}
+
+dialog.case{width:min(860px,calc(100vw - 32px));max-height:calc(100vh - 48px);padding:0;border:1px solid var(--line);border-radius:24px;background:var(--bg2);color:var(--text);box-shadow:0 40px 100px -30px #000}
+dialog.case::backdrop{background:rgba(5,6,14,.75);backdrop-filter:blur(6px)}
+dialog.case[open]{animation:dlgin .35s cubic-bezier(.22,1,.36,1)}
+@keyframes dlgin{from{opacity:0;transform:translateY(18px) scale(.98)}}
+.case-in{position:relative;padding:clamp(24px,4vw,44px);display:grid;gap:14px}
+.case-x{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:16px;cursor:pointer}
+.case-x:hover{border-color:var(--mag);color:var(--mag)}
+.case .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);padding-right:48px}
+.case h2{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(38px,5vw,60px);line-height:.92}
+.case h3{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:26px;margin-top:14px;color:var(--sun)}
+.case .lead{color:var(--muted);font-size:17px;max-width:62ch}
+.stats3{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px;margin-top:6px}
+.stats3 div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stats3 b{display:block;font-family:var(--disp);font-weight:900;font-size:30px;color:var(--teal);line-height:1}
+.stats3 span{display:block;margin-top:6px;font-size:13px;color:var(--muted);line-height:1.4}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;counter-reset:st}
+.steps li{counter-increment:st;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:4px}
+.steps li b::before{content:counter(st) " · ";color:var(--mag);font-family:var(--mono)}
+.steps li span{color:var(--muted);font-size:14px}
+.did{margin:0;padding-left:20px;display:grid;gap:7px;color:var(--muted);max-width:70ch}
+.did li::marker{color:var(--teal)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.case .chips span{font-size:12px;padding:5px 9px;background:var(--bg);border:1px solid var(--line)}
+@media (max-width:700px){.stats3,.steps,.two-col{grid-template-columns:1fr}}
+
+
+.demo{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--bg)}
+.demo iframe{display:block;width:100%;height:620px;border:0;background:#fff}
+.demo-note{padding:12px 16px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line)}
+.demo-note a{color:var(--teal)}
+.pbtns .btn.demo-btn{background:var(--sun);color:var(--bg);border-color:var(--sun)}
+@media (max-width:700px){.demo iframe{height:520px}}
+
 /* contact */
 .contact{padding-bottom:40px;position:relative;overflow:hidden}
 .giant{overflow:hidden;border-block:1px solid var(--line)}
@@ -640,6 +705,37 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="head"><div><div class="eyebrow">04 · Selected work</div><h2 class="scr">Things I <em>built</em></h2></div>
     </div>
     <div class="scroller" id="scroller" aria-label="Projects">
+      <article class="proj feat" style="--c:var(--teal)">
+        <div class="vis">
+          <div class="v-hnr" aria-hidden="true">
+            <div class="hn-row">
+              <div class="hn-img"><span>1</span><span>2</span><span>0</span></div>
+              <i>→</i>
+              <div class="hn-seg"><b>1</b><b>2</b><b>0</b></div>
+              <i>→</i>
+              <div class="hn-cnn"><em></em><em></em><em></em><em></em><small>CNN</small></div>
+              <i>→</i>
+              <div class="hn-out">120</div>
+            </div>
+            <div class="hn-acc">
+              <div><span>MNIST (CNN)</span><i style="--w:98.9%"></i><b>98.9%</b></div>
+              <div><span>Real handwriting, before</span><i class="lo" style="--w:64.6%"></i><b>64.6%</b></div>
+              <div><span>After fine-tuning + tuning</span><i class="hi" style="--w:89.35%"></i><b>89.35%</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="k">Machine learning · Computer vision · Python</div>
+          <h3>Handwritten Number Recognition</h3>
+          <p>A system that reads handwritten numbers from images. It splits each image into digits, recognises each digit with a custom CNN, and joins the results. It reaches 89% exact-match accuracy on 2,000 test images, and comes with an interactive web app.</p>
+          <div class="chips"><span>Python</span><span>TensorFlow/Keras</span><span>OpenCV</span><span>scikit-learn</span><span>Gradio</span><span>Google Colab</span></div>
+          <div class="pbtns">
+            <a class="btn demo-btn" href="https://huggingface.co/spaces/Zadeed/handwritten-number-recogniser" target="_blank" rel="noopener">▶ Live demo ↗</a>
+            <button type="button" class="btn a" data-open="hnr-dlg">Read case study</button>
+            <a class="btn b" href="https://github.com/ZadeedSwin/HNR-COS30018" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </div>
+      </article>
       <article class="proj" style="--c:var(--teal)">
         <div class="vis">
           <div class="v-aws">
@@ -870,6 +966,55 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 </main>
+<dialog id="hnr-dlg" class="case" aria-labelledby="hnr-title">
+  <div class="case-in">
+    <button type="button" class="case-x" data-close aria-label="Close">✕</button>
+    <div class="k">University group project · COS30018 Intelligent Systems · Swinburne University of Technology · 2026</div>
+    <h2 id="hnr-title">Handwritten Number Recognition System</h2>
+    <p class="lead">I built a machine learning pipeline that recognises handwritten numbers, from single digits to multi-digit numbers like “120”, in real handwriting images.</p>
+
+    <div class="stats3">
+      <div><b>98.9%</b><span>CNN on MNIST<br>(SVM: 95.9%)</span></div>
+      <div><b>64.6% → 89.35%</b><span>Exact-match accuracy on held-out real handwriting</span></div>
+      <div><b>2,000</b><span>Test images</span></div>
+    </div>
+
+    <h3>How it works</h3>
+    <ol class="steps">
+      <li><b>Segmentation</b><span>OpenCV thresholding and connected-component analysis split each image into single digits.</span></li>
+      <li><b>Classification</b><span>A CNN I designed and trained from scratch recognises each digit.</span></li>
+      <li><b>Joining</b><span>The digit predictions are combined from left to right into the final number.</span></li>
+    </ol>
+
+    <h3>What I did</h3>
+    <ul class="did">
+      <li>Built and compared a CNN and an SVM on MNIST: 98.9% vs 95.9% accuracy.</li>
+      <li>Found that the model dropped to 64.6% on real handwriting, and traced it to domain shift (the real handwriting looks different from the training data) and segmentation errors.</li>
+      <li>Fine-tuned the CNN on the target dataset and tuned the segmentation settings with a 24-combination grid search.</li>
+      <li>Found that the labels had lost their leading zeros, and corrected the evaluation method to match.</li>
+      <li>Improved accuracy step by step, from 64.6% to 89.35%, on held-out test images.</li>
+      <li>Built and deployed a <a href="https://huggingface.co/spaces/Zadeed/handwritten-number-recogniser" target="_blank" rel="noopener" style="color:var(--teal)">Gradio web app on Hugging Face Spaces</a> where users draw or upload a number and see each digit's prediction and confidence.</li>
+    </ul>
+
+
+    <h3>Try it live</h3>
+    <div class="demo">
+      <iframe data-src="https://zadeed-handwritten-number-recogniser.hf.space" title="Handwritten Number Recogniser live demo" loading="lazy" allow="clipboard-write"></iframe>
+      <p class="demo-note">Draw or upload a number to see each digit's prediction and confidence. Hosted on Hugging Face Spaces — if it's asleep, give it a few seconds to wake up, or <a href="https://huggingface.co/spaces/Zadeed/handwritten-number-recogniser" target="_blank" rel="noopener">open the demo in a new tab ↗</a>.</p>
+    </div>
+
+    <div class="two-col">
+      <div><h3>Key skills</h3><div class="chips"><span>Deep learning</span><span>Computer vision</span><span>Error analysis</span><span>Model evaluation</span><span>Data cleaning</span><span>Experiment design</span></div></div>
+      <div><h3>Tech stack</h3><div class="chips"><span>Python</span><span>TensorFlow/Keras</span><span>OpenCV</span><span>scikit-learn</span><span>NumPy</span><span>pandas</span><span>Matplotlib</span><span>Gradio</span><span>Google Colab</span><span>GitHub</span></div></div>
+    </div>
+
+    <div class="pbtns" style="margin-top:26px">
+      <a class="btn demo-btn" href="https://huggingface.co/spaces/Zadeed/handwritten-number-recogniser" target="_blank" rel="noopener">▶ Open live demo ↗</a>
+      <a class="btn a" href="https://github.com/ZadeedSwin/HNR-COS30018" target="_blank" rel="noopener">View code on GitHub ↗</a>
+      <button type="button" class="btn b" data-close>Close</button>
+    </div>
+  </div>
+</dialog>
 <footer><div class="wrap"><span>© 2026 Zadeed Haque · Melbourne, Australia</span><span>Computer Science × AI × Creativity</span><div class="fsoc"><a href="https://www.linkedin.com/in/zadeed-haque-496528217/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.34-.03-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V21H9z"/></svg><span>LinkedIn</span></a><a href="https://www.youtube.com/@ZadeedHaque" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.7 15V9l5.8 3-5.8 3Z"/></svg><span>YouTube</span></a><a href="https://github.com/zadeedhaque" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg><span>GitHub</span></a><a href="https://www.instagram.com/zadzzd/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z"/><path d="M16.5 2h-9A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2Zm3.7 14.5a3.7 3.7 0 0 1-3.7 3.7h-9a3.7 3.7 0 0 1-3.7-3.7v-9a3.7 3.7 0 0 1 3.7-3.7h9a3.7 3.7 0 0 1 3.7 3.7Z"/></svg><span>Instagram</span></a><a href="https://www.facebook.com/zadeed.ccaa.7" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8V6.2c0-.8.2-1.2 1.4-1.2H17V2h-2.6C11.3 2 10 3.5 10 6v2H8v3h2v11h4V11h2.7l.3-3z"/></svg><span>Facebook</span></a></div></div></footer>
 
 <script>
@@ -966,6 +1111,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     walk(h);
   });
 
+  /* case study dialogs */
+  document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => {
+    const d = document.getElementById(b.dataset.open);
+    d && d.querySelectorAll('iframe[data-src]').forEach(f => { if (!f.src) f.src = f.dataset.src; });
+  }));
+
+  document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => {
+    const d = document.getElementById(b.dataset.open); if (d && d.showModal) d.showModal();
+  }));
+  document.querySelectorAll('dialog.case').forEach(d => {
+    d.querySelectorAll('[data-close]').forEach(x => x.addEventListener('click', () => d.close()));
+    d.addEventListener('click', e => { if (e.target === d) d.close(); });
+  });
   /* 60 grid */
   const vg = document.getElementById('vgrid'), q = ['var(--teal)','var(--sun)','var(--mag)'];
   for (let i = 0; i < 60; i++) { const c = document.createElement('i'); c.style.setProperty('--q', q[i < 20 ? 0 : i < 40 ? 1 : 2]); c.style.animationDelay = (i * 0.05) + 's'; vg.appendChild(c); }
