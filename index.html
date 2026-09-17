@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zadeed Haque Studio</title>
+<title>Zeedio</title>
 <meta name="description" content="Zadeed Haque — Computer Science × AI × Creativity">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,7 @@
   --text:#f5f1e8; --muted:#a3a6c4;
   --teal:#2fc4ad; --sun:#ffd23f; --mag:#ff3b76; --plum:#7a4dff;
   --stripes:linear-gradient(115deg,var(--teal) 0 25%,var(--sun) 25% 50%,var(--mag) 50% 75%,var(--plum) 75% 100%);
+  --loop:linear-gradient(90deg,var(--teal),var(--sun),var(--mag),var(--plum),var(--teal),var(--sun),var(--mag),var(--plum),var(--teal));
   --disp:"Big Shoulders Display","Impact","Arial Narrow",sans-serif;
   --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"Space Mono",ui-monospace,Consolas,monospace;
@@ -36,7 +37,7 @@ p{margin:0}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;gap:18px;height:66px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--disp);font-weight:900;font-size:26px;letter-spacing:.02em}
-.logo i{width:30px;height:30px;border-radius:8px;background:var(--stripes);background-size:200% 200%;animation:shift 6s linear infinite}
+.logo i{width:30px;height:30px;border-radius:8px;background:var(--loop);background-size:200% 100%;animation:shift 6s linear infinite}
 .menu{display:flex;gap:2px;margin-left:auto}
 .menu a{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:8px;transition:.2s}
 .menu a:hover{color:var(--text);background:var(--bg3)}
@@ -53,7 +54,7 @@ nav .wrap{display:flex;align-items:center;gap:18px;height:66px}
 .pill i{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 var(--teal);animation:ping 1.8s infinite}
 .big{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(80px,12vw,180px);letter-spacing:-.01em;line-height:.82;margin-top:22px}
 .big span{display:block}
-.big .s{background:var(--stripes);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shift 8s linear infinite}
+.big .s{background:var(--loop);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shift 8s linear infinite}
 .roles{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(24px,3.2vw,40px);letter-spacing:.01em;margin-top:18px;display:flex;flex-wrap:wrap;gap:0 14px;align-items:baseline}
 .roles .x{color:var(--sun)}
 .sub{color:var(--muted);font-size:clamp(17px,1.6vw,19px);margin-top:14px;max-width:38em}
@@ -83,7 +84,7 @@ nav .wrap{display:flex;align-items:center;gap:18px;height:66px}
 .stats span{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}
 
 .card3d{position:relative;perspective:1000px;justify-self:center;width:100%;max-width:420px}
-.frame{position:relative;border-radius:26px;padding:10px;background:var(--stripes);background-size:200% 200%;animation:shift 10s linear infinite;transform:rotate(3deg);transform-style:preserve-3d;transition:transform .25s ease-out;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 70px -20px var(--mag)}
+.frame{position:relative;border-radius:26px;padding:10px;background:var(--loop);background-size:200% 100%;animation:shift 10s linear infinite;transform:rotate(3deg);transform-style:preserve-3d;transition:transform .25s ease-out;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 70px -20px var(--mag)}
 .frame img{display:block;width:100%;height:auto;aspect-ratio:5/6;object-fit:cover;border-radius:18px}
 .sheen{position:absolute;inset:10px;border-radius:18px;pointer-events:none;background:radial-gradient(circle at var(--sx,30%) var(--sy,20%),rgba(255,255,255,.35),transparent 45%);mix-blend-mode:overlay}
 .tag{position:absolute;font-family:var(--mono);font-size:12px;font-weight:700;padding:8px 13px;border-radius:10px;white-space:nowrap;box-shadow:0 14px 30px -12px #000;animation:float 5s ease-in-out infinite;z-index:2}
@@ -274,7 +275,7 @@ section{padding-block:clamp(72px,10vw,130px)}
 .game > *{min-width:0}
 .debug pre{white-space:pre-wrap}
 .hello{display:flex;align-items:center;gap:18px;justify-content:flex-end;flex-wrap:wrap}
-.face-sm{width:132px;height:132px;border-radius:50%;padding:5px;background:var(--stripes);background-size:200% 200%;animation:shift 8s linear infinite;flex-shrink:0}
+.face-sm{width:132px;height:132px;border-radius:50%;padding:5px;background:var(--loop);background-size:200% 100%;animation:shift 8s linear infinite;flex-shrink:0}
 .face-sm img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;border:3px solid var(--bg)}
 @media (max-width:860px){.hello{justify-content:flex-start}}
 
@@ -513,7 +514,7 @@ dialog.case#mc-dlg{width:min(1040px,calc(100vw - 32px))}
 .giant span:nth-child(odd){color:var(--text);-webkit-text-stroke:0}
 .cbox{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;margin-top:56px}
 .cbox p{color:var(--muted);font-size:19px;max-width:40ch}
-.mail{font-family:var(--disp);font-weight:900;font-size:clamp(28px,4.2vw,54px);text-transform:uppercase;text-decoration:none;display:inline-block;background:var(--stripes);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shift 6s linear infinite;word-break:break-all;line-height:1}
+.mail{font-family:var(--disp);font-weight:900;font-size:clamp(28px,4.2vw,54px);text-transform:uppercase;text-decoration:none;display:inline-block;background:var(--loop);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shift 6s linear infinite;word-break:break-all;line-height:1}
 .cbox .cta{justify-content:flex-end}
 @media (max-width:860px){.cbox{grid-template-columns:1fr}.cbox .cta{justify-content:flex-start}}
 footer{border-top:1px solid var(--line);padding-block:26px;font-family:var(--mono);font-size:12px;color:var(--muted)}
@@ -525,7 +526,22 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
 }
 @media (max-width:520px){.tag.t1{left:-4%}.tag.t2{right:-4%}.tag.t3{left:-2%}}
 
-@keyframes shift{to{background-position:220% 0}}
+
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.logo i,.frame,.face-sm{background:conic-gradient(from var(--ang),var(--teal),var(--sun),var(--mag),var(--plum),var(--teal));background-size:auto;animation:spin 5s linear infinite}
+.frame{animation-duration:6s}
+@keyframes spin{to{--ang:360deg}}
+.big .s,.mail{animation-duration:4s}
+@media (prefers-reduced-motion:reduce){.logo i,.frame,.face-sm{animation:none}}
+
+/* solid-colour animations (no gradients) */
+.big .s{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:var(--teal);animation:none!important}
+.mail{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:var(--text);animation:none!important}
+.cl,.big .s .cl{display:inline-block;animation:cyc 4s linear infinite;animation-delay:calc(var(--i) * -0.35s)}
+@keyframes cyc{0%,18%{color:var(--teal)}25%,43%{color:var(--sun)}50%,68%{color:var(--mag)}75%,93%{color:var(--plum)}100%{color:var(--teal)}}
+.logo i,.frame,.face-sm{background:conic-gradient(from var(--ang),var(--teal) 0 25%,var(--sun) 0 50%,var(--mag) 0 75%,var(--plum) 0 100%)!important}
+@media (prefers-reduced-motion:reduce){.cl{animation:none}}
+@keyframes shift{from{background-position:0 0}to{background-position:200% 0}}
 @keyframes scroll{to{transform:translateX(-50%)}}
 @keyframes float{50%{translate:0 -10px}}
 @keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--teal) 70%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
@@ -563,7 +579,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
   <div class="wrap">
     <div>
       <span class="pill"><i></i>Open to internships · freelance · collabs</span>
-      <h1 class="big"><span>Zadeed</span><span class="s">Haque</span></h1>
+      <h1 class="big"><span>Zadeed</span><span class="s" aria-label="Haque">Haque</span></h1>
       <div class="roles"><span>Computer Science</span><span class="x">×</span><span>AI</span><span class="x">×</span><span>Creativity</span></div>
       <p class="sub">CS student at <b>Swinburne University of Technology</b>, Hawthorn, majoring in AI.<span class="rl">I'm a <span id="rot">Web Developer</span></span></p>
       <div class="cta">
@@ -1341,6 +1357,18 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
     requestAnimationFrame(step);
   });
 
+  /* per-letter solid colour cycle */
+  document.querySelectorAll('.big .s, .mail').forEach(el => {
+    let i = 0;
+    const walk = n => [...n.childNodes].forEach(c => {
+      if (c.nodeType === 3) {
+        const f = document.createDocumentFragment();
+        [...c.textContent].forEach(ch => { const s = document.createElement('span'); s.className = 'cl'; s.textContent = ch; s.style.setProperty('--i', i++); f.appendChild(s); });
+        c.replaceWith(f);
+      } else if (c.nodeType === 1 && c.tagName !== 'BR') walk(c);
+    });
+    walk(el);
+  });
   /* heading hover: smooth letter wave */
   document.querySelectorAll('.scr').forEach(h => {
     let i = 0;
