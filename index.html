@@ -391,6 +391,15 @@ section{padding-block:clamp(72px,10vw,130px)}
 @media (max-width:860px){.reels{grid-template-columns:1fr}}
 @media (hover:none),(prefers-reduced-motion:reduce){.reel:hover{transform:none}}
 
+
+/* projects: static grid (no horizontal scroll) */
+.scroller{display:grid!important;grid-auto-flow:row!important;grid-auto-columns:auto!important;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible!important;scroll-snap-type:none!important;cursor:default!important;padding:0!important;margin:0!important}
+.proj{user-select:auto}
+.scroller > .proj:last-child{grid-column:span 2}
+@media (max-width:1060px){.scroller{grid-template-columns:repeat(2,minmax(0,1fr))}.scroller > .proj:last-child{grid-column:span 2}}
+@media (max-width:640px){.scroller > .proj:last-child{grid-column:auto}}
+@media (max-width:640px){.scroller{grid-template-columns:1fr}}
+
 /* contact */
 .contact{padding-bottom:40px;position:relative;overflow:hidden}
 .giant{overflow:hidden;border-block:1px solid var(--line)}
@@ -629,9 +638,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section id="work" style="padding-top:0">
   <div class="wrap">
     <div class="head"><div><div class="eyebrow">04 · Selected work</div><h2 class="scr">Things I <em>built</em></h2></div>
-      <div class="ctrl"><button type="button" id="prev" aria-label="Previous project">←</button><button type="button" id="next" aria-label="Next project">→</button></div>
     </div>
-    <div class="scroller" id="scroller" tabindex="0" aria-label="Projects, scroll sideways">
+    <div class="scroller" id="scroller" aria-label="Projects">
       <article class="proj" style="--c:var(--teal)">
         <div class="vis">
           <div class="v-aws">
@@ -957,16 +965,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     h.setAttribute('aria-label', h.textContent);
     walk(h);
   });
-
-  /* projects scroller: arrows + drag */
-  const sc = document.getElementById('scroller');
-  const by = dir => sc.scrollBy({left: dir * (sc.querySelector('.proj').offsetWidth + 18), behavior: reduce ? 'auto' : 'smooth'});
-  document.getElementById('prev').onclick = () => by(-1);
-  document.getElementById('next').onclick = () => by(1);
-  let down = false, sx = 0, sl = 0, moved = false;
-  sc.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = false; sx = e.clientX; sl = sc.scrollLeft; });
-  addEventListener('pointermove', e => { if (!down) return; const dx = e.clientX - sx; if (Math.abs(dx) > 4) { moved = true; sc.classList.add('drag'); } sc.scrollLeft = sl - dx; });
-  addEventListener('pointerup', () => { if (!down) return; down = false; sc.classList.remove('drag'); });
 
   /* 60 grid */
   const vg = document.getElementById('vgrid'), q = ['var(--teal)','var(--sun)','var(--mag)'];
