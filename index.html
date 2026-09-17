@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zadeed Haque</title>
+<meta name="description" content="Zadeed Haque — Computer Science × AI × Creativity">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ink:#0d0a17;          /* plum-black ground */
+  --ink-2:#161127;
+  --ink-3:#221a3a;
+  --line:#34295a;
+  --text:#f2eefc;
+  --muted:#a79dc4;
+  --pink:#ff3d7f;
+  --cyan:#35e1ff;
+  --sun:#ffd23f;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{background:var(--ink);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:inherit}
+::selection{background:var(--pink);color:#fff}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.mono{font-family:var(--mono)}
+h1,h2,h3{font-family:var(--display);line-height:1.02;margin:0;text-wrap:balance}
+p{margin:0}
+.x{color:var(--sun)}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--ink) 72%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.logo{font-family:var(--display);font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.logo i{font-style:normal;width:10px;height:10px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px var(--pink);animation:pulse 2s infinite}
+.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.links::-webkit-scrollbar{display:none}
+.links a{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:999px;white-space:nowrap;transition:.2s}
+.links a:hover{color:var(--text);background:var(--ink-3)}
+.links a.hire{color:var(--ink);background:var(--sun);font-weight:600}
+@media (max-width:760px){.links a:not(.hire):not(.keep){display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+#net{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(600px 400px at 85% 20%,rgba(255,61,127,.22),transparent 70%),
+  radial-gradient(500px 380px at 10% 90%,rgba(53,225,255,.16),transparent 70%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.35fr .9fr;gap:40px;align-items:center;padding-block:clamp(56px,9vw,110px)}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.eyebrow b{width:28px;height:1px;background:var(--cyan)}
+.name{font-weight:900;font-size:clamp(54px,10.5vw,138px);letter-spacing:-.035em;margin-top:18px;line-height:.9}
+.name span{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.name span:nth-child(2){animation-delay:.12s;-webkit-text-stroke:2px var(--text);color:transparent;position:relative}
+.name span:nth-child(2)::after{content:"HAQUE";position:absolute;left:0;top:0;color:var(--pink);clip-path:inset(0 100% 0 0);animation:fill 1.6s 1s cubic-bezier(.7,0,.2,1) forwards;-webkit-text-stroke:0}
+.tag{font-family:var(--display);font-weight:600;font-size:clamp(17px,2.3vw,26px);margin-top:26px;letter-spacing:-.01em}
+.typed{font-size:clamp(17px,1.7vw,20px);color:var(--muted);margin-top:14px;max-width:34em}
+.typed .word{color:var(--text);font-family:var(--mono);background:var(--ink-3);padding:2px 8px;border-radius:6px;border-right:2px solid var(--pink)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{font-family:var(--mono);font-weight:600;font-size:14px;text-decoration:none;padding:14px 22px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;transition:transform .2s,box-shadow .2s,background .2s;border:1px solid transparent;cursor:pointer}
+.btn.primary{background:var(--pink);color:#fff;box-shadow:0 8px 30px -8px var(--pink)}
+.btn.primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px -8px var(--pink)}
+.btn.ghost{border-color:var(--line);color:var(--text);background:color-mix(in srgb,var(--ink-2) 70%,transparent)}
+.btn.ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.portrait{position:relative;aspect-ratio:1;max-width:400px;width:100%;justify-self:center}
+.ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--pink),var(--sun),var(--cyan),var(--pink));animation:spin 8s linear infinite;filter:blur(.5px)}
+.ring::after{content:"";position:absolute;inset:-18px;border-radius:50%;background:inherit;filter:blur(40px);opacity:.45}
+.face{position:absolute;inset:10px;border-radius:50%;background:radial-gradient(circle at 30% 25%,var(--ink-3),var(--ink) 70%);display:grid;place-items:center;overflow:hidden;z-index:1}
+.face img{width:100%;height:100%;object-fit:cover}
+.mono-mark{font-family:var(--display);font-weight:900;font-size:clamp(70px,11vw,130px);letter-spacing:-.05em;background:linear-gradient(135deg,var(--text),var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent}
+.orbit{position:absolute;z-index:2;font-family:var(--mono);font-size:12px;padding:7px 12px;border-radius:999px;background:var(--ink-2);border:1px solid var(--line);white-space:nowrap;animation:bob 4s ease-in-out infinite;box-shadow:0 10px 30px -10px #000}
+.orbit.o1{top:6%;left:-6%;color:var(--cyan)}
+.orbit.o2{top:46%;right:-8%;color:var(--sun);animation-delay:-1.3s}
+.orbit.o3{bottom:6%;left:4%;color:var(--pink);animation-delay:-2.6s}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--sun);color:var(--ink);overflow:hidden;transform:rotate(-1.4deg);margin:34px -20px;box-shadow:0 20px 40px -20px rgba(255,210,63,.4)}
+.marquee .track{display:flex;width:max-content;animation:scroll 34s linear infinite}
+.marquee span{font-family:var(--display);font-weight:800;font-size:clamp(18px,2.4vw,28px);padding:14px 22px;white-space:nowrap;text-transform:uppercase;letter-spacing:-.01em}
+.marquee span::after{content:"×";margin-left:44px;color:var(--pink)}
+.marquee.alt{background:var(--ink-3);color:var(--text);transform:rotate(1deg);margin-top:-30px;box-shadow:none}
+.marquee.alt .track{animation-direction:reverse;animation-duration:40s}
+.marquee.alt span{font-size:clamp(14px,1.6vw,18px);font-family:var(--mono);font-weight:400;text-transform:none}
+.marquee.alt span::after{color:var(--cyan)}
+
+/* ---------- sections ---------- */
+section{padding-block:clamp(64px,9vw,120px)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.sec-head h2{font-size:clamp(36px,6vw,72px);font-weight:900;letter-spacing:-.03em}
+.sec-head h2 em{font-style:normal;color:var(--pink)}
+.kicker{font-family:var(--mono);font-size:13px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.sec-head p{color:var(--muted);max-width:30em}
+.reveal{animation:rise .8s cubic-bezier(.2,.8,.2,1) both;animation-timeline:view();animation-range:entry 0% entry 40%}
+
+/* about */
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,70px)}
+.about .lead{font-size:clamp(22px,2.6vw,31px);line-height:1.35;font-weight:500;letter-spacing:-.01em}
+.about .lead mark{background:none;color:var(--cyan)}
+.about .body{display:grid;gap:18px;color:var(--muted);max-width:62ch}
+.traits{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.traits span{font-family:var(--mono);font-size:13px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;transition:.25s}
+.offclock{margin-top:22px;color:var(--muted);font-size:15px}.offclock .mono{color:var(--sun);font-size:12px;margin-right:6px}
+.traits span:hover{border-color:var(--pink);background:var(--pink);color:#fff;transform:rotate(-3deg) scale(1.05)}
+.venn{position:relative;aspect-ratio:1.05;max-width:440px;width:100%;justify-self:center;align-self:center}
+.venn div{position:absolute;width:58%;aspect-ratio:1;border-radius:50%;mix-blend-mode:screen;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:clamp(13px,1.6vw,17px);text-align:center;padding:14%;transition:transform .4s}
+.venn .c1{left:0;top:0;background:radial-gradient(circle,rgba(53,225,255,.55),rgba(53,225,255,.15));place-items:start;padding:22% 0 0 18%}
+.venn .c2{right:0;top:0;background:radial-gradient(circle,rgba(255,61,127,.55),rgba(255,61,127,.15));place-items:start end;padding:22% 18% 0 0}
+.venn .c3{left:21%;bottom:0;background:radial-gradient(circle,rgba(255,210,63,.5),rgba(255,210,63,.12));place-items:end center;padding:0 0 18%}
+.venn:hover .c1{transform:translate(-6px,-6px)}.venn:hover .c2{transform:translate(6px,-6px)}.venn:hover .c3{transform:translateY(6px)}
+.venn .core{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:12px;background:var(--ink);border:1px solid var(--text);padding:6px 10px;border-radius:999px;white-space:nowrap;z-index:2}
+
+/* projects bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.card{position:relative;background:var(--ink-2);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,2.6vw,32px);overflow:hidden;transition:border-color .3s,transform .3s;transform-style:preserve-3d;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card:hover{border-color:color-mix(in srgb,var(--c,var(--pink)) 70%,transparent)}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--c,var(--pink)) 16%,transparent),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover::before{opacity:1}
+.card h3{font-size:clamp(22px,2.4vw,30px);font-weight:800;letter-spacing:-.02em}
+.card p{color:var(--muted)}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px}
+.tagrow span{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border-radius:6px;background:var(--ink-3);color:var(--text)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--pink));display:flex;justify-content:space-between;gap:10px}
+.span-6{grid-column:span 6}.span-4{grid-column:span 4}.span-3{grid-column:span 3}.span-2{grid-column:span 2}
+@media (max-width:900px){.span-4,.span-3,.span-2{grid-column:span 6}}
+
+/* 60 grid */
+.p60{display:grid;grid-template-columns:1fr 1.15fr;gap:32px;align-items:center}
+.cells{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.cells i{aspect-ratio:1;border-radius:5px;background:var(--t);opacity:.28;transition:opacity .2s,transform .2s;cursor:default;position:relative}
+.cells i:hover{opacity:1;transform:scale(1.25);z-index:2}
+.cells.lit i{opacity:.9}
+.tiers{display:grid;gap:10px;margin-top:6px}
+.tier{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.tier b{font-family:var(--mono);font-size:12px;color:var(--t);white-space:nowrap}
+.tier strong{font-family:var(--display);font-weight:600;font-size:15px}
+.tier small{grid-column:2;color:var(--muted);font-size:14px}
+.hint{font-family:var(--mono);font-size:12px;color:var(--muted);min-height:1.6em;margin-top:10px}
+
+/* raft svg */
+.raft svg{width:100%;height:auto;display:block;border-radius:14px;background:linear-gradient(#141030,#0f1a33)}
+.wave{animation:wave 6s linear infinite}
+.wave.w2{animation-duration:9s;animation-direction:reverse}
+.bob{animation:raft 3.2s ease-in-out infinite;transform-origin:200px 120px}
+.sos{animation:pulse 1.2s infinite}
+
+/* aws diagram */
+.aws{border:1.5px dashed color-mix(in srgb,var(--cyan) 60%,transparent);border-radius:16px;padding:14px;position:relative;font-family:var(--mono);font-size:12px}
+.aws > .t{color:var(--cyan);margin-bottom:10px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.azs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.az{border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:8px}
+.az > span{color:var(--muted)}
+.sn{border-radius:10px;padding:8px;display:grid;gap:6px}
+.sn.pub{background:rgba(53,225,255,.08);border:1px solid rgba(53,225,255,.3)}
+.sn.pri{background:rgba(255,61,127,.08);border:1px solid rgba(255,61,127,.3)}
+.sn em{font-style:normal;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.node{background:var(--ink);border:1px solid var(--line);border-radius:7px;padding:6px 8px;display:flex;align-items:center;gap:7px;transition:.2s}
+.node::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--n,var(--cyan));flex-shrink:0}
+.node:hover{border-color:var(--n,var(--cyan));transform:translateX(3px)}
+.guards{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.guards span{border:1px solid var(--sun);color:var(--sun);border-radius:999px;padding:3px 9px;font-size:11px}
+
+/* healthcare flow */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.flow button{font-family:var(--mono);font-size:13px;color:var(--text);background:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:.2s}
+.flow button[aria-selected="true"]{background:var(--c);color:var(--ink);border-color:var(--c);font-weight:600}
+.flow .arr{color:var(--muted);font-family:var(--mono)}
+.roles{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.roles li{background:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:15px;animation:pop .35s both}
+.roles li:nth-child(2){animation-delay:.05s}.roles li:nth-child(3){animation-delay:.1s}.roles li:nth-child(4){animation-delay:.15s}.roles li:nth-child(5){animation-delay:.2s}
+
+/* browser mock */
+.browser{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--ink)}
+.browser .bar{display:flex;gap:6px;padding:9px 12px;background:var(--ink-3);align-items:center}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.browser .bar i:nth-child(1){background:var(--pink)}.browser .bar i:nth-child(2){background:var(--sun)}.browser .bar i:nth-child(3){background:var(--cyan)}
+.browser .bar span{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser pre{margin:0;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.7;overflow-x:auto;color:var(--muted)}
+.browser pre .k{color:var(--pink)}.browser pre .a{color:var(--cyan)}.browser pre .s{color:var(--sun)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:280px 1fr;gap:28px}
+.tabs{display:flex;flex-direction:column;gap:6px}
+.tabs button{all:unset;cursor:pointer;font-family:var(--display);font-weight:600;font-size:17px;padding:14px 18px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);transition:.2s;border:1px solid transparent}
+.tabs button span{font-family:var(--mono);font-size:12px;font-weight:400}
+.tabs button:hover{color:var(--text);background:var(--ink-2)}
+.tabs button[aria-selected="true"]{color:var(--ink);background:var(--c)}
+.tabs button:focus-visible{outline:2px solid var(--sun)}
+.panel{background:var(--ink-2);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,3vw,36px);min-height:320px;position:relative;overflow:hidden}
+.panel h3{font-size:clamp(28px,4vw,46px);font-weight:900;letter-spacing:-.03em;color:var(--c)}
+.panel p{color:var(--muted);margin-top:8px;max-width:50ch}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chips span{font-family:var(--mono);font-size:14px;padding:10px 16px;border-radius:12px;background:var(--ink);border:1px solid var(--line);animation:pop .4s both;transition:.2s}
+.chips span:hover{border-color:var(--c);color:var(--c);transform:translateY(-3px)}
+.panel .big{position:absolute;right:-10px;bottom:-40px;font-family:var(--display);font-weight:900;font-size:180px;color:var(--c);opacity:.07;line-height:1;pointer-events:none}
+@media (max-width:760px){.skills{grid-template-columns:1fr}.tabs{flex-direction:row;overflow-x:auto;padding-bottom:4px}.tabs button{white-space:nowrap;padding:10px 14px;font-size:14px}.tabs button span{display:none}}
+
+/* timeline */
+.timeline{display:grid;gap:0;position:relative}
+.stop{display:grid;grid-template-columns:200px 1fr;gap:30px;padding:30px 0;border-top:1px solid var(--line);position:relative}
+.stop:last-child{border-bottom:1px solid var(--line)}
+.when{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.when b{display:block;font-family:var(--display);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--c);margin-bottom:6px}
+.stop h3{font-size:clamp(22px,3vw,34px);font-weight:800;letter-spacing:-.02em;transition:color .2s}
+.stop:hover h3{color:var(--c)}
+.stop .sub{color:var(--text);margin-top:6px;font-weight:500}
+.stop p.d{color:var(--muted);margin-top:10px;max-width:62ch}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.badges span{font-family:var(--mono);font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--c);color:var(--c)}
+@media (max-width:700px){.stop{grid-template-columns:1fr;gap:10px}}
+
+/* creative */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{aspect-ratio:4/5;border-radius:18px;position:relative;overflow:hidden;display:flex;align-items:end;padding:16px;border:1px solid var(--line);isolation:isolate}
+.tile:nth-child(2),.tile:nth-child(3){aspect-ratio:auto}
+.tile .art{position:absolute;inset:0;z-index:-1;transition:transform .6s}
+.tile:hover .art{transform:scale(1.08) rotate(2deg)}
+.tile h4{margin:0;font-family:var(--display);font-size:17px;font-weight:700}
+.tile small{display:block;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.75);margin-top:3px}
+.tile .play{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);display:grid;place-items:center}
+.tile .play::after{content:"";border-left:12px solid #fff;border-block:7px solid transparent;margin-left:3px}
+@media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}.tile:nth-child(2),.tile:nth-child(3){aspect-ratio:4/5}}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:r}
+.leg{padding:26px;border-radius:22px;background:var(--ink-2);border:1px solid var(--line);position:relative}
+.leg .when2{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--c)}
+.leg h3{font-size:24px;font-weight:800;margin-top:8px}
+.leg ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px;color:var(--muted)}
+.leg li{display:flex;gap:10px}
+.leg li::before{content:"→";color:var(--c);font-family:var(--mono)}
+.progress{height:6px;border-radius:9px;background:var(--ink-3);margin-top:20px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--c);width:var(--w);border-radius:9px}
+@media (max-width:860px){.road{grid-template-columns:1fr}}
+
+/* contact */
+.contact{position:relative;overflow:hidden;border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(44px,10vw,140px);font-weight:900;letter-spacing:-.045em;line-height:.9}
+.contact h2 a{text-decoration:none;background:linear-gradient(90deg,var(--pink),var(--sun),var(--cyan),var(--pink));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.contact .lede{color:var(--muted);max-width:44ch;margin-top:22px;font-size:19px}
+footer{padding-block:28px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* cursor glow */
+#glow{position:fixed;width:340px;height:340px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(255,61,127,.12),transparent 65%);transform:translate(-50%,-50%);left:-400px;top:-400px;transition:opacity .3s}
+main{position:relative;z-index:1}
+
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr}
+  .portrait{max-width:280px;order:-1;justify-self:start}
+  .orbit.o1{left:auto;right:-20%}
+  .about,.p60{grid-template-columns:1fr}
+}
+@media (max-width:520px){.azs{grid-template-columns:1fr}.portrait{max-width:220px}.orbit{display:none}}
+
+@keyframes rise{from{transform:translateY(40px)}to{transform:none}}
+@keyframes fill{to{clip-path:inset(0 0 0 0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@keyframes pulse{50%{opacity:.35}}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@keyframes wave{to{transform:translateX(-200px)}}
+@keyframes raft{50%{transform:translateY(5px) rotate(-1.5deg)}}
+@keyframes pop{from{transform:scale(.85)}to{transform:none}}
+@keyframes shine{to{background-position:300% 0}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .name span:nth-child(2)::after{clip-path:none}
+  html{scroll-behavior:auto}
+}
+</style>
+
+</head>
+<body>
+<div id="glow" aria-hidden="true"></div>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top"><i></i>ZH</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a class="keep" href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#journey">Journey</a>
+      <a href="#creative">Creative</a>
+      <a class="hire" href="#contact">Let's talk</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+<header class="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><b></b>CS student · AI major · Swinburne, Melbourne</div>
+      <h1 class="name"><span>ZADEED</span><span>HAQUE</span></h1>
+      <p class="tag">Computer Science <span class="x">×</span> AI <span class="x">×</span> Creativity</p>
+      <p class="typed">Turning ideas into working technology. I build <span class="word" id="word">software</span></p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See the work ↓</a>
+        <a class="btn ghost" href="https://github.com/zadeedhaque" target="_blank" rel="noopener">github.com/zadeedhaque ↗</a>
+      </div>
+    </div>
+    <div class="portrait">
+      <div class="ring"></div>
+      <div class="face"><span class="mono-mark">ZH</span></div>
+      <span class="orbit o1">&lt;/&gt; Java · C++</span>
+      <span class="orbit o2">☁ AWS VPC</span>
+      <span class="orbit o3">✦ Illustrator · Premiere</span>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>Artificial Intelligence</span><span>Software Engineering</span><span>Cloud Architecture</span><span>Web Development</span><span>Graphic Design</span><span>Video Editing</span>
+  <span>Artificial Intelligence</span><span>Software Engineering</span><span>Cloud Architecture</span><span>Web Development</span><span>Graphic Design</span><span>Video Editing</span>
+</div></div>
+<div class="marquee alt" aria-hidden="true"><div class="track">
+  <span>Code. Create. Solve.</span><span>60 Projects Challenge</span><span>From ideas to implementation</span><span>Building practical technology for real-world problems</span>
+  <span>Code. Create. Solve.</span><span>60 Projects Challenge</span><span>From ideas to implementation</span><span>Building practical technology for real-world problems</span>
+</div></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <div class="kicker">// about me</div>
+      <p class="lead">I'm a Computer Science student at <mark>Swinburne</mark>, specialising in <mark>Artificial Intelligence</mark> — and I like my code to leave the textbook and solve something real.</p>
+      <div class="body" style="margin-top:26px">
+        <p>My journey started with Computer Science &amp; Engineering at BRAC University in Dhaka, where I built my foundation in programming, algorithms and software development. In Melbourne I'm expanding that into AI, software architecture, cloud computing and modern software engineering.</p>
+        <p>My work ranges from Java and C++ to web development, AWS cloud architecture, networking and creative digital work. I've explored flood resilience for a remote community, a healthcare booking platform, cloud infrastructure and educational video production.</p>
+        <p>Right now I'm sharpening my technical skills, shipping projects, and looking for places where software, AI and creativity meet.</p>
+      </div>
+      <div class="traits">
+        <span>Team collaboration</span><span>Creative problem solving</span><span>Adaptability</span><span>Time management</span><span>Team leadership</span><span>Builder mindset</span><span>AI-obsessed</span>
+      </div>
+      <div class="offclock"><span class="mono">off the clock →</span> football · painting · music · movies · photography · videography</div>
+    </div>
+    <div class="venn" aria-label="Where my interests overlap">
+      <div class="c1">Computer<br>Science</div>
+      <div class="c2">AI</div>
+      <div class="c3">Creativity</div>
+      <span class="core">← me</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="kicker">// selected work</div><h2>Things I've <em>built</em><br>&amp; designed.</h2></div>
+      <p>From programming fundamentals to cloud infrastructure and community-focused engineering. Hover around — most of these move.</p>
+    </div>
+
+    <div class="bento">
+      <!-- 60 projects -->
+      <article class="card span-6" style="--c:var(--sun)">
+        <div class="p60">
+          <div>
+            <div class="label"><span>Personal challenge</span><span>C++ · Java</span></div>
+            <h3 style="margin-top:12px">60 Projects Challenge</h3>
+            <p style="margin-top:10px">Sixty programs, built in three escalating tiers, to make programming fundamentals second nature — starting with a calculator, a number-guessing game, a temperature converter and a unit converter.</p>
+            <div class="tiers" id="tiers">
+              <div class="tier" data-t="1" style="--t:var(--cyan)"><b>#01–20</b><strong>Fundamentals</strong><small>I/O, conditions, loops, functions, basic problem solving</small></div>
+              <div class="tier" data-t="2" style="--t:var(--pink)"><b>#21–40</b><strong>Object-Oriented Programming</strong><small>Classes, encapsulation, inheritance, polymorphism, abstraction</small></div>
+              <div class="tier" data-t="3" style="--t:var(--sun)"><b>#41–60</b><strong>Data Structures &amp; Algorithms</strong><small>Arrays, linked lists, trees, searching, sorting, complexity</small></div>
+            </div>
+          </div>
+          <div>
+            <div class="cells" id="cells" aria-label="Grid of 60 projects in three tiers"></div>
+            <div class="hint" id="hint">Hover a square or a tier →</div>
+            <a class="btn ghost" style="margin-top:14px" href="https://github.com/zadeedhaque" target="_blank" rel="noopener">Follow along on GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Wadeye -->
+      <article class="card span-3 raft" style="--c:var(--cyan)">
+        <div class="label"><span>Design project</span><span>Wadeye, NT</span></div>
+        <h3>Wadeye Flood Raft</h3>
+        <svg viewBox="0 0 400 200" role="img" aria-label="Illustration of a floating household flood raft with a solar panel and SOS beacon">
+          <g class="bob">
+            <rect x="120" y="96" width="160" height="12" rx="3" fill="#c79a5a"/>
+            <rect x="126" y="86" width="148" height="10" rx="2" fill="#a57a3f"/>
+            <circle cx="145" cy="118" r="14" fill="#ff3d7f"/><circle cx="182" cy="118" r="14" fill="#35e1ff"/>
+            <circle cx="219" cy="118" r="14" fill="#ff3d7f"/><circle cx="256" cy="118" r="14" fill="#35e1ff"/>
+            <rect x="150" y="56" width="52" height="22" rx="2" fill="#1b2a5c" stroke="#35e1ff" stroke-width="1.5" transform="rotate(-12 176 67)"/>
+            <line x1="176" y1="72" x2="176" y2="86" stroke="#a79dc4" stroke-width="2"/>
+            <line x1="252" y1="86" x2="252" y2="40" stroke="#f2eefc" stroke-width="2"/>
+            <circle class="sos" cx="252" cy="36" r="6" fill="#ffd23f"/>
+            <text x="262" y="40" fill="#ffd23f" font-family="monospace" font-size="11">SOS</text>
+            <rect x="214" y="72" width="22" height="14" rx="2" fill="#f2eefc"/><text x="217" y="82" font-size="8" font-family="monospace" fill="#0d0a17">GPS</text>
+          </g>
+          <path class="wave" d="M0 128 q25 -10 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 V200 H0Z" fill="rgba(53,225,255,.35)"/>
+          <path class="wave w2" d="M-200 140 q25 -8 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 V200 H-200Z" fill="rgba(53,225,255,.55)"/>
+        </svg>
+        <p>A low-cost floating household raft for a remote Indigenous community facing flood isolation — built from plastic drums and bamboo, with solar power and a sensor pack that can call for help.</p>
+        <div class="tagrow"><span>solar + battery</span><span>water sensors</span><span>temperature</span><span>GPS</span><span>tilt detection</span><span>SOS comms</span></div>
+      </article>
+
+      <!-- AWS -->
+      <article class="card span-3" style="--c:var(--cyan)">
+        <div class="label"><span>Cloud architecture</span><span>AWS</span></div>
+        <h3>Multi-AZ AWS VPC</h3>
+        <div class="aws">
+          <div class="t"><span>▣ Custom VPC</span><span style="color:var(--muted)">Internet Gateway ↕</span></div>
+          <div class="azs">
+            <div class="az"><span>Availability Zone A</span>
+              <div class="sn pub"><em>public subnet</em><div class="node">Bastion host</div></div>
+              <div class="sn pri"><em>private subnet</em><div class="node" style="--n:var(--pink)">Private test instance</div></div>
+            </div>
+            <div class="az"><span>Availability Zone B</span>
+              <div class="sn pub"><em>public subnet</em><div class="node">EC2 instance</div></div>
+              <div class="sn pri"><em>private subnet</em><div class="node" style="--n:var(--sun)">MySQL database</div></div>
+            </div>
+          </div>
+          <div class="guards"><span>Security Groups</span><span>IAM</span><span>Route tables</span></div>
+        </div>
+        <p>Hands-on infrastructure: a custom VPC across two AZs, SSH through a bastion into private resources, and locked-down security groups. <span class="mono" style="font-size:12px">(layout simplified)</span></p>
+      </article>
+
+      <!-- Healthcare -->
+      <article class="card span-4" style="--c:var(--pink)">
+        <div class="label"><span>Platform concept</span><span>Bangladesh</span></div>
+        <h3>Healthcare Booking Platform</h3>
+        <p>A HotDoc-style ecosystem reimagined for Bangladeshi healthcare. Tap a role to see what it can do.</p>
+        <div class="flow" role="tablist" id="flow"></div>
+        <ul class="roles" id="roles"></ul>
+        <div class="tagrow"><span>multi-tenant</span><span>role-based access</span><span>dashboards</span><span>appointments</span></div>
+      </article>
+
+      <!-- Web -->
+      <article class="card span-2" style="--c:var(--sun)">
+        <div class="label"><span>Web</span><span>HTML · CSS</span></div>
+        <h3>Web Projects</h3>
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span>zadeedhaque.github.io</span></div>
+<pre><span class="k">&lt;form</span> <span class="a">novalidate</span><span class="k">&gt;</span>
+  <span class="k">&lt;input</span> <span class="a">type</span>=<span class="s">"date"</span>
+    <span class="a">required</span><span class="k">&gt;</span>
+  <span class="k">&lt;fieldset&gt;</span> radios…
+<span class="k">&lt;/form&gt;</span></pre>
+        </div>
+        <p>Semantic HTML, validated forms, tables and responsive CSS layouts — published on GitHub Pages. Also built the About page, structure and styling for a team cybersecurity site.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:linear-gradient(180deg,transparent,var(--ink-2) 30%,var(--ink-2) 70%,transparent)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="kicker">// toolkit</div><h2>What I <em>work</em> with.</h2></div>
+      <p>Six toolboxes — from pointers and BSTs to subnets, keyframes and teamwork.</p>
+    </div>
+    <div class="skills">
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="panel" role="tabpanel" id="panel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="kicker">// experience</div><h2>Behind the <em>edit</em>.</h2></div>
+      <p>Before code, there was the timeline panel — years of editing and producing video for real audiences.</p>
+    </div>
+    <div class="timeline">
+      <div class="stop" style="--c:var(--pink)">
+        <div class="when"><b>Production lead</b>2023 – 2024</div>
+        <div>
+          <h3>Brain Stormers Coaching Center</h3>
+          <div class="sub">Video Production</div>
+          <p class="d">Led a small team shooting and editing educational videos, overseeing the full production process from concept to final cut and coordinating the crew on creative direction.</p>
+          <div class="badges"><span>Team leadership</span><span>Concept → final edit</span><span>Educational content</span></div>
+        </div>
+      </div>
+      <div class="stop" style="--c:var(--cyan)">
+        <div class="when"><b>Freelance</b>2021 – 2023</div>
+        <div>
+          <h3>Video Editor</h3>
+          <div class="sub">Luxurious Sky (YouTube) &amp; movie-explanation channels</div>
+          <p class="d">Edited videos for Luxurious Sky, a YouTube channel now at 10k subscribers, and freelanced for multiple movie-explanation channels — fast turnarounds, story pacing and audience retention.</p>
+          <div class="badges"><span>10k-subscriber channel</span><span>After Effects</span><span>Filmora</span><span>Multiple clients</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="kicker">// education</div><h2>Dhaka <span class="x">→</span> <em>Melbourne</em>.</h2></div>
+      <p>Two countries, two universities, one direction: build a deep foundation, then point it at AI.</p>
+    </div>
+    <div class="timeline">
+      <div class="stop" style="--c:var(--pink)">
+        <div class="when"><b>Now</b>Expected Nov 2027</div>
+        <div>
+          <h3>Swinburne University of Technology</h3>
+          <div class="sub">Bachelor of Computer Science — Major in Artificial Intelligence</div>
+          <p class="d">Studying AI, software engineering and architecture, cloud computing, web development, networks and systems design. Admitted with advanced standing from BRAC.</p>
+          <div class="badges"><span>30% academic scholarship</span><span>High Distinction × 2 (Sem 1 2026)</span><span>Melbourne</span></div>
+        </div>
+      </div>
+      <div class="stop" style="--c:var(--cyan)">
+        <div class="when"><b>Foundation</b>2024 – 2025</div>
+        <div>
+          <h3>BRAC University</h3>
+          <div class="sub">Computer Science &amp; Engineering</div>
+          <p class="d">A year of core CSE — programming, algorithms, data structures and software development — credited towards my Swinburne degree.</p>
+          <div class="badges"><span>CGPA 3.64 / 4.00</span><span>Credit transferred</span><span>Dhaka</span></div>
+        </div>
+      </div>
+      <div class="stop" style="--c:#b48cff">
+        <div class="when"><b>School</b>2022 – 2023</div>
+        <div>
+          <h3>Rajuk Uttara Model College</h3>
+          <div class="sub">Higher Secondary Certificate</div>
+          <p class="d">Completed HSC with a perfect GPA before starting university.</p>
+          <div class="badges"><span>GPA 5.00 / 5.00</span><span>Dhaka</span></div>
+        </div>
+      </div>
+      <div class="stop" style="--c:#7df0c8">
+        <div class="when"><b>Scores</b>2024 – 2025</div>
+        <div>
+          <h3>Standardised Tests</h3>
+          <div class="sub">English proficiency &amp; academic aptitude</div>
+          <div class="badges"><span>IELTS 7.5 — no band below 7</span><span>SAT 1300 — Math 710 · R&amp;W 590</span></div>
+        </div>
+      </div>
+      <div class="stop" style="--c:var(--sun)">
+        <div class="when"><b>Creative</b>Professional training</div>
+        <div>
+          <h3>Creative IT Institute</h3>
+          <div class="sub">Graphic Design</div>
+          <p class="d">Visual design, Adobe Illustrator and digital content creation — the reason my slides and projects look the way they do.</p>
+          <div class="badges"><span>Adobe Illustrator</span><span>Visual design</span><span>Digital content</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREATIVE -->
+<section id="creative" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="kicker">// creative work</div><h2>Beyond the <em>terminal</em>.</h2></div>
+      <p>Graphic design, video editing and presentation design — for YouTube channels, an education centre and coursework.</p>
+    </div>
+    <div class="gallery">
+      <div class="tile"><div class="art" style="background:conic-gradient(from 200deg at 30% 70%,#ff3d7f,#6b2bd9,#35e1ff,#ff3d7f)"></div><div><h4>Brand graphics</h4><small>Illustrator</small></div></div>
+      <div class="tile"><div class="art" style="background:repeating-linear-gradient(90deg,#161127 0 14px,#221a3a 14px 16px),linear-gradient(#ffd23f,#ff3d7f)"></div><span class="play"></span><div><h4>YouTube edits</h4><small>Luxurious Sky · After Effects</small></div></div>
+      <div class="tile"><div class="art" style="background:radial-gradient(circle at 70% 30%,#ffd23f 0 18%,transparent 19%),radial-gradient(circle at 30% 75%,#35e1ff 0 26%,transparent 27%),#2a1f4f"></div><span class="play"></span><div><h4>Educational videos</h4><small>Brain Stormers · production</small></div></div>
+      <div class="tile"><div class="art" style="background:linear-gradient(135deg,#35e1ff,#161127 55%),repeating-linear-gradient(0deg,transparent 0 22px,rgba(255,255,255,.08) 22px 24px)"></div><div><h4>Presentation design</h4><small>Pitch &amp; course decks</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="next" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="kicker">// where I'm headed</div><h2>The <em>roadmap</em>.</h2></div>
+      <p>Foundations first, real-world experience next, then research and AI-powered products — and eventually a Master's and PhD.</p>
+    </div>
+    <div class="road">
+      <div class="leg" style="--c:var(--cyan)"><div class="when2">Short term · now</div><h3>Foundations</h3>
+        <ul><li>Software development</li><li>AI &amp; machine learning</li><li>Cloud computing</li><li>Web development</li><li>Data structures &amp; algorithms</li></ul>
+        <div class="progress"><i style="--w:62%"></i></div></div>
+      <div class="leg" style="--c:var(--pink)"><div class="when2">Medium term</div><h3>Real-world reps</h3>
+        <ul><li>Internship experience</li><li>Freelance projects</li><li>Production software</li><li>AI projects</li><li>Open-source contributions</li></ul>
+        <div class="progress"><i style="--w:28%"></i></div></div>
+      <div class="leg" style="--c:var(--sun)"><div class="when2">Long term</div><h3>Build the future</h3>
+        <ul><li>AI research (Master's → PhD)</li><li>Software engineering</li><li>AI-powered products</li><li>Tech entrepreneurship</li></ul>
+        <div class="progress"><i style="--w:8%"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="kicker">// open to internships, freelance &amp; collabs</div>
+    <h2>Let's build<br><a href="mailto:zadeedhuq2018@gmail.com">something.</a></h2>
+    <p class="lede">Web development, presentation and graphic design, video editing, or an AI idea you want to prototype — I'm in.</p>
+    <div class="row">
+      <a class="btn primary" href="mailto:zadeedhuq2018@gmail.com">zadeedhuq2018@gmail.com</a>
+      <a class="btn ghost" href="https://github.com/zadeedhaque" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="#projects">Back to projects ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Zadeed Haque · Melbourne, Australia</span><span>Code. Create. Solve.</span></div></footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- neural network canvas ---- */
+  const cv = document.getElementById('net'), ctx = cv.getContext('2d');
+  let W, H, pts = [], mouse = {x:-999, y:-999};
+  const cols = ['#35e1ff','#ff3d7f','#ffd23f'];
+  function size(){
+    const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio||1, 2);
+    W = r.width; H = r.height; cv.width = W*d; cv.height = H*d; ctx.setTransform(d,0,0,d,0,0);
+    const n = Math.round(Math.min(90, W*H/14000));
+    pts = Array.from({length:n}, () => ({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35, c:cols[Math.random()*3|0], r:Math.random()*1.8+1}));
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    for (const p of pts){
+      if(!reduce){ p.x+=p.vx; p.y+=p.vy; }
+      if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1;
+      const dx=p.x-mouse.x, dy=p.y-mouse.y, d=Math.hypot(dx,dy);
+      if(d<140 && !reduce){ p.x+=dx/d*1.2; p.y+=dy/d*1.2; }
+    }
+    for (let i=0;i<pts.length;i++){
+      const a=pts[i];
+      for (let j=i+1;j<pts.length;j++){
+        const b=pts[j], d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<130){ ctx.strokeStyle=`rgba(167,157,196,${(1-d/130)*.35})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      }
+      const md=Math.hypot(a.x-mouse.x,a.y-mouse.y);
+      if(md<220){ ctx.strokeStyle=`rgba(255,61,127,${(1-md/220)*.6})`; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke(); }
+      ctx.fillStyle=a.c; ctx.shadowColor=a.c; ctx.shadowBlur=10;
+      ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,7); ctx.fill(); ctx.shadowBlur=0;
+    }
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  size(); frame(); addEventListener('resize', () => { size(); if(reduce) frame(); });
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; });
+  hero.addEventListener('pointerleave', () => { mouse.x=mouse.y=-999; });
+
+  /* ---- cursor glow + card spotlight/tilt ---- */
+  const glow = document.getElementById('glow');
+  if (matchMedia('(pointer:fine)').matches) addEventListener('pointermove', e => { glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
+  else glow.hidden = true;
+  document.querySelectorAll('.card').forEach(c => {
+    c.addEventListener('pointermove', e => {
+      const r=c.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+      c.style.setProperty('--mx', x*100+'%'); c.style.setProperty('--my', y*100+'%');
+      if(!reduce && r.width < 700) c.style.transform=`perspective(900px) rotateX(${(.5-y)*5}deg) rotateY(${(x-.5)*5}deg)`;
+    });
+    c.addEventListener('pointerleave', () => c.style.transform='');
+  });
+
+  /* ---- typed word ---- */
+  const words = ['software','AI-assisted tools','cloud infrastructure','websites','visual stories','practical solutions'];
+  const el = document.getElementById('word'); let wi = 0;
+  if(!reduce) setInterval(() => {
+    wi = (wi+1)%words.length; const w = words[wi]; let i = 0;
+    const t = setInterval(() => { el.textContent = w.slice(0, ++i); if(i>=w.length) clearInterval(t); }, 45);
+  }, 2600);
+
+  /* ---- 60 cells ---- */
+  const cells = document.getElementById('cells'), hint = document.getElementById('hint');
+  const tierInfo = {1:['Fundamentals','var(--cyan)'],2:['OOP','var(--pink)'],3:['DSA','var(--sun)']};
+  const ex = {1:'Calculator',2:'Number Guessing Game',3:'Temperature Converter',4:'Unit Converter'};
+  for(let i=1;i<=60;i++){
+    const t = i<=20?1:i<=40?2:3, c = document.createElement('i');
+    c.style.setProperty('--t', tierInfo[t][1]); c.dataset.t=t;
+    c.title = `#${String(i).padStart(2,'0')} · ${tierInfo[t][0]}`;
+    c.addEventListener('mouseenter', () => hint.textContent = `#${String(i).padStart(2,'0')} — ${tierInfo[t][0]}${ex[i]?' · e.g. '+ex[i]:''}`);
+    cells.appendChild(c);
+    if(!reduce) setTimeout(() => { c.style.opacity=.9; setTimeout(()=>c.style.opacity='',500); }, 600+i*35);
+  }
+  document.querySelectorAll('.tier').forEach(tr => {
+    tr.addEventListener('mouseenter', () => { cells.querySelectorAll('i').forEach(c => c.style.opacity = c.dataset.t===tr.dataset.t ? 1 : .12); hint.textContent = tr.querySelector('b').textContent + ' — ' + tr.querySelector('strong').textContent; });
+    tr.addEventListener('mouseleave', () => cells.querySelectorAll('i').forEach(c => c.style.opacity=''));
+  });
+
+  /* ---- healthcare roles ---- */
+  const roles = [
+    ['Platform Admin','var(--sun)',['Approve hospitals','Manage organisations','Verify providers','Manage platform users']],
+    ['Hospitals','var(--cyan)',['Manage doctors','Manage appointments','Manage patients','Hospital dashboard']],
+    ['Doctors','var(--pink)',['Set availability','View appointments','Patient information','Message patients']],
+    ['Patients','#b48cff',['Find hospitals','Find doctors','Book appointments','Manage bookings','Health information']]
+  ];
+  const flow = document.getElementById('flow'), list = document.getElementById('roles');
+  roles.forEach((r,i) => {
+    if(i) { const a=document.createElement('span'); a.className='arr'; a.textContent='→'; flow.appendChild(a); }
+    const b=document.createElement('button'); b.role='tab'; b.textContent=r[0]; b.style.setProperty('--c',r[1]);
+    b.onclick = () => pick(i); flow.appendChild(b);
+  });
+  function pick(i){
+    flow.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-selected', j===i));
+    list.innerHTML = roles[i][2].map(x=>`<li>${x}</li>`).join('');
+  }
+  pick(0);
+
+  /* ---- skills tabs ---- */
+  const skills = [
+    ['Programming','var(--pink)','</>','The languages I think in.',['Java','C++','HTML','CSS','JavaScript']],
+    ['Computer Science','var(--cyan)','{ }','The fundamentals underneath everything.',['Object-Oriented Programming','Data Structures','Algorithms','Linked Lists','Trees','Binary Search Trees','Sorting Algorithms','Templates','Iterators','File I/O','Problem Solving']],
+    ['Software Dev','var(--sun)','git','How I plan, version and ship.',['Git','GitHub','GitHub Pages','Visual Studio Code','Software Architecture','Object-Oriented Design','Requirements Analysis']],
+    ['Cloud & Networking','#7df0c8','☁','Infrastructure from the VLAN up to the VPC.',['AWS','EC2','VPC','Subnets','Security Groups','IAM','Cloud Architecture','MySQL','IPv4 / IPv6','VLAN','802.1Q','DHCP','TCP/IP','Cisco Packet Tracer']],
+    ['Creative & Media','#b48cff','✦','The part that makes it look good.',['Adobe Illustrator','Adobe Premiere Pro','Adobe After Effects','Filmora','Graphic Design','Video Editing','Video Production','Presentation Design','Microsoft Word','Microsoft PowerPoint']],
+    ['Soft Skills','#ff9f5a','◎','How I work with people.',['Team Collaboration','Team Leadership','Creative Problem Solving','Adaptability','Time Management','Project Coordination','Communication']]
+  ];
+  const tabs = document.getElementById('tabs'), panel = document.getElementById('panel');
+  skills.forEach((s,i) => {
+    const b=document.createElement('button'); b.role='tab'; b.id='tab-'+i; b.style.setProperty('--c',s[1]);
+    b.innerHTML = `${s[0]}<span>${String(s[4].length).padStart(2,'0')}</span>`;
+    b.onclick = () => show(i); tabs.appendChild(b);
+  });
+  function show(i){
+    const s = skills[i];
+    tabs.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-selected', j===i));
+    panel.style.setProperty('--c', s[1]);
+    panel.innerHTML = `<h3>${s[0]}</h3><p>${s[3]}</p><div class="chips">${s[4].map((x,k)=>`<span style="animation-delay:${k*30}ms">${x}</span>`).join('')}</div><div class="big" aria-hidden="true">${s[2].replace('<','&lt;').replace('>','&gt;')}</div>`;
+  }
+  show(0);
+})();
+</script>
+
+</body>
+</html>
