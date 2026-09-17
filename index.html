@@ -230,6 +230,51 @@ section{padding-block:clamp(64px,9vw,120px)}
 .tile .play::after{content:"";border-left:12px solid #fff;border-block:7px solid transparent;margin-left:3px}
 @media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}.tile:nth-child(2),.tile:nth-child(3){aspect-ratio:4/5}}
 
+
+/* gaming */
+.game{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
+.game .intro{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.game .intro p{color:var(--muted);max-width:60ch}
+.game .intro p + p{margin-top:14px}
+.pipe{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pipe span{font-family:var(--mono);font-size:13px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--ink-2);animation:glowstep 5s infinite}
+.pipe span:nth-of-type(2){animation-delay:1s}.pipe span:nth-of-type(3){animation-delay:2s}.pipe span:nth-of-type(4){animation-delay:3s}.pipe span:nth-of-type(5){animation-delay:4s}
+.pipe i{font-style:normal;color:var(--muted);font-family:var(--mono)}
+@keyframes glowstep{0%,15%{border-color:var(--pink);color:var(--pink);box-shadow:0 0 18px -4px var(--pink)}25%,100%{border-color:var(--line);color:var(--text);box-shadow:none}}
+.rig dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0;font-family:var(--mono);font-size:14px}
+.rig dt,.rig dd{margin:0;padding:11px 0;border-top:1px solid var(--line)}
+.rig dt{color:var(--muted);padding-right:18px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;line-height:21px}
+.rig dd{color:var(--text);text-align:right}
+.rig dd b{color:var(--c)}
+.studio{background:#07060d;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.screen{position:relative;aspect-ratio:16/9;max-width:100%;background:
+  radial-gradient(circle at 70% 60%,rgba(255,61,127,.35),transparent 45%),
+  radial-gradient(circle at 25% 30%,rgba(53,225,255,.3),transparent 45%),
+  linear-gradient(135deg,#1a1236,#0b0a1a);overflow:hidden}
+.screen::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 4px);pointer-events:none}
+.hud{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px}
+.live{background:#e5173f;color:#fff;padding:3px 8px;border-radius:5px;font-weight:600;display:flex;gap:6px;align-items:center}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1s infinite}
+.hud .res{background:rgba(0,0,0,.5);padding:3px 8px;border-radius:5px}
+.cam{position:absolute;right:10px;bottom:10px;width:28%;aspect-ratio:4/3;border-radius:8px;border:2px solid var(--sun);background:radial-gradient(circle at 50% 40%,#3a2f63 0 22%,transparent 23%),radial-gradient(ellipse at 50% 100%,#3a2f63 0 45%,transparent 46%),#140f26;display:flex;align-items:end;justify-content:start;padding:4px}
+.cam span{font-family:var(--mono);font-size:9px;background:rgba(0,0,0,.6);padding:1px 5px;border-radius:3px}
+.crosshair{position:absolute;left:40%;top:50%;width:26px;height:26px;transform:translate(-50%,-50%);animation:aim 6s ease-in-out infinite}
+.crosshair::before,.crosshair::after{content:"";position:absolute;background:var(--cyan)}
+.crosshair::before{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%)}
+.crosshair::after{top:50%;left:0;right:0;height:2px;transform:translateY(-50%)}
+@keyframes aim{25%{transform:translate(20%,-80%)}50%{transform:translate(-120%,-30%)}75%{transform:translate(-40%,10%)}}
+.meters{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+.meters > div{background:var(--ink);padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.meters b{display:block;color:var(--text);font-size:13px;margin-top:2px}
+.bars{display:flex;gap:2px;align-items:end;height:16px;margin-top:6px}
+.bars i{flex:1;background:var(--cyan);border-radius:1px;animation:eq 1.2s ease-in-out infinite alternate}
+.bars i:nth-child(2n){animation-delay:-.4s;background:var(--pink)}.bars i:nth-child(3n){animation-delay:-.8s}
+@keyframes eq{from{height:20%}to{height:100%}}
+.log{grid-column:1/-1}
+.log pre{margin:0;background:#07060d;border:1px solid var(--line);border-radius:14px;padding:18px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted);overflow-x:auto}
+.log pre .e{color:var(--pink)}.log pre .o{color:#7df0c8}.log pre .w{color:var(--sun)}.log pre .c{color:var(--cyan)}
+@media (max-width:900px){.game,.game .intro{grid-template-columns:1fr}}
+
 /* roadmap */
 .road{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:r}
 .leg{padding:26px;border-radius:22px;background:var(--ink-2);border:1px solid var(--line);position:relative}
@@ -302,6 +347,7 @@ main{position:relative;z-index:1}
       <a href="#experience">Experience</a>
       <a href="#journey">Journey</a>
       <a href="#creative">Creative</a>
+      <a href="#gaming">Gaming</a>
       <a class="hire" href="#contact">Let's talk</a>
     </div>
   </div>
@@ -336,8 +382,8 @@ main{position:relative;z-index:1}
   <span>Artificial Intelligence</span><span>Software Engineering</span><span>Cloud Architecture</span><span>Web Development</span><span>Graphic Design</span><span>Video Editing</span>
 </div></div>
 <div class="marquee alt" aria-hidden="true"><div class="track">
-  <span>Code. Create. Solve.</span><span>60 Projects Challenge</span><span>From ideas to implementation</span><span>Building practical technology for real-world problems</span>
-  <span>Code. Create. Solve.</span><span>60 Projects Challenge</span><span>From ideas to implementation</span><span>Building practical technology for real-world problems</span>
+  <span>Code. Create. Solve.</span><span>60 Projects Challenge</span><span>Gaming × Streaming</span><span>From ideas to implementation</span><span>Building practical technology for real-world problems</span>
+  <span>Code. Create. Solve.</span><span>60 Projects Challenge</span><span>Gaming × Streaming</span><span>From ideas to implementation</span><span>Building practical technology for real-world problems</span>
 </div></div>
 
 <!-- ABOUT -->
@@ -585,6 +631,68 @@ main{position:relative;z-index:1}
   </div>
 </section>
 
+<!-- GAMING -->
+<section id="gaming" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="kicker">// gaming &amp; streaming</div><h2>Press start. <em>Go live.</em></h2></div>
+      <p>PC gaming turned into streaming, and streaming turned into a real interest in cameras, lighting, encoding and post-production.</p>
+    </div>
+    <div class="game">
+      <div class="intro">
+        <div>
+          <p>Gaming has been a long-standing interest of mine, and it grew into content creation and live streaming. I've streamed gameplay to YouTube with Streamlabs, on a setup I built and tuned myself around a DSLR camera, dedicated lighting and NVIDIA GPU encoding.</p>
+          <p>I'm not just pressing “Go Live” — I care about the technical side too: keeping Windows and the PC running smoothly, and getting the stream to look as good on YouTube as it does on my screen.</p>
+        </div>
+        <div class="pipe" aria-label="Gaming to streaming to video to editing to content creation">
+          <span>Gaming</span><i>→</i><span>Streaming</span><i>→</i><span>Video</span><i>→</i><span>Editing</span><i>→</i><span>Content</span>
+        </div>
+      </div>
+
+      <article class="card" style="--c:var(--pink)">
+        <div class="label"><span>Live preview</span><span>Streamlabs → YouTube</span></div>
+        <div class="studio">
+          <div class="screen" role="img" aria-label="Mock stream preview with live badge, gameplay and webcam overlay">
+            <div class="hud"><span class="live">LIVE</span><span class="res">1080p60 · NVENC</span></div>
+            <div class="crosshair"></div>
+            <div class="cam"><span>D3400 cam</span></div>
+          </div>
+          <div class="meters">
+            <div>Encoder<b>NVENC</b></div>
+            <div>Output<b>1080p · 60fps</b></div>
+            <div>Audio<div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rig" style="--c:var(--cyan)">
+        <div class="label"><span>The rig</span><span>Built for play + production</span></div>
+        <h3>Battle station</h3>
+        <dl>
+          <dt>CPU</dt><dd>AMD Ryzen 7 <b>7700G</b></dd>
+          <dt>GPU</dt><dd>NVIDIA RTX <b>4070</b></dd>
+          <dt>RAM</dt><dd>16 GB Corsair Vengeance</dd>
+          <dt>Camera</dt><dd>Nikon <b>D3400</b> DSLR as webcam</dd>
+          <dt>Lighting</dt><dd>Back-fill light setup</dd>
+          <dt>Software</dt><dd>Streamlabs · Premiere · After Effects · Filmora</dd>
+        </dl>
+      </article>
+
+      <article class="card log" style="--c:var(--sun)">
+        <div class="label"><span>Debug log</span><span>Stream quality</span></div>
+        <h3>Sharp locally, blocky on YouTube</h3>
+<pre><span class="c">[preview]</span>  local Streamlabs preview ........ <span class="o">sharp ✓</span>
+<span class="c">[youtube]</span>  1080p60 playback ................ <span class="e">heavily pixelated ✗</span>
+<span class="w">[diagnose]</span> same source, different result → look at the encoder
+<span class="w">[tuning]</span>   NVENC (RTX 4070) › multipass
+<span class="w">[tuning]</span>   NVENC (RTX 4070) › look-ahead
+<span class="w">[tuning]</span>   NVENC (RTX 4070) › quality preset @ 1080p60
+<span class="o">[takeaway]</span> fast motion at 60fps needs the encoder dialled in — the settings matter as much as the hardware</pre>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ROADMAP -->
 <section id="next" style="padding-top:0">
   <div class="wrap">
@@ -641,14 +749,16 @@ main{position:relative;z-index:1}
     // Only reseed when the width really changes; mobile address-bar show/hide only nudges height.
     if (newW !== lastW) {
       lastW = newW;
-      const n = Math.round(Math.min(touch ? 40 : 90, W*H/(touch ? 18000 : 14000)));
-      pts = Array.from({length:n}, () => ({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35, c:cols[Math.random()*3|0], r:Math.random()*1.8+1}));
+      const n = Math.round(Math.min(touch ? 60 : 90, W*H/(touch ? 9000 : 14000)));
+      pts = Array.from({length:n}, () => ({x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*(touch?.9:.35), vy:(Math.random()-.5)*(touch?.9:.35), c:cols[Math.random()*3|0], r:Math.random()*1.8+1}));
     } else {
       for (const p of pts) { p.x = Math.min(p.x, W); p.y = Math.min(p.y, H); }
     }
   }
-  function frame(){
+  let t0 = 0, touching = false;
+  function frame(ts){
     ctx.clearRect(0,0,W,H);
+    if (touch && !touching && !reduce) { t0 = (ts||0)/1000; mouse.x = W*(.5+.35*Math.cos(t0*.6)); mouse.y = H*(.5+.3*Math.sin(t0*.9)); }
     for (const p of pts){
       if(!reduce){ p.x+=p.vx; p.y+=p.vy; }
       if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1;
@@ -663,6 +773,7 @@ main{position:relative;z-index:1}
       }
       const md=Math.hypot(a.x-mouse.x,a.y-mouse.y);
       if(md<220){ ctx.strokeStyle=`rgba(255,61,127,${(1-md/220)*.6})`; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke(); }
+      if(touch){ ctx.globalAlpha=.25; ctx.fillStyle=a.c; ctx.beginPath(); ctx.arc(a.x,a.y,a.r*3.2,0,7); ctx.fill(); ctx.globalAlpha=1; }
       ctx.fillStyle=a.c; if(!touch){ ctx.shadowColor=a.c; ctx.shadowBlur=10; }
       ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,7); ctx.fill(); ctx.shadowBlur=0;
     }
@@ -677,7 +788,10 @@ main{position:relative;z-index:1}
   }).observe(cv);
   const hero = document.querySelector('.hero');
   hero.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; });
-  hero.addEventListener('pointerleave', () => { mouse.x=mouse.y=-999; });
+  hero.addEventListener('pointerdown', () => { touching = true; });
+  hero.addEventListener('pointerleave', () => { touching = false; if(!touch) mouse.x=mouse.y=-999; });
+  hero.addEventListener('pointerup', () => { touching = false; });
+  hero.addEventListener('pointercancel', () => { touching = false; });
 
   /* ---- cursor glow + card spotlight/tilt ---- */
   const glow = document.getElementById('glow');
@@ -742,7 +856,7 @@ main{position:relative;z-index:1}
     ['Computer Science','var(--cyan)','{ }','The fundamentals underneath everything.',['Object-Oriented Programming','Data Structures','Algorithms','Linked Lists','Trees','Binary Search Trees','Sorting Algorithms','Templates','Iterators','File I/O','Problem Solving']],
     ['Software Dev','var(--sun)','git','How I plan, version and ship.',['Git','GitHub','GitHub Pages','Visual Studio Code','Software Architecture','Object-Oriented Design','Requirements Analysis']],
     ['Cloud & Networking','#7df0c8','☁','Infrastructure from the VLAN up to the VPC.',['AWS','EC2','VPC','Subnets','Security Groups','IAM','Cloud Architecture','MySQL','IPv4 / IPv6','VLAN','802.1Q','DHCP','TCP/IP','Cisco Packet Tracer']],
-    ['Creative & Media','#b48cff','✦','The part that makes it look good.',['Adobe Illustrator','Adobe Premiere Pro','Adobe After Effects','Filmora','Graphic Design','Video Editing','Video Production','Presentation Design','Microsoft Word','Microsoft PowerPoint']],
+    ['Creative & Media','#b48cff','✦','The part that makes it look good.',['Adobe Illustrator','Adobe Premiere Pro','Adobe After Effects','Filmora','Graphic Design','Video Editing','Video Production','Live Streaming','Streamlabs','NVIDIA NVENC','DSLR Camera & Lighting','Presentation Design','Microsoft Word','Microsoft PowerPoint']],
     ['Soft Skills','#ff9f5a','◎','How I work with people.',['Team Collaboration','Team Leadership','Creative Problem Solving','Adaptability','Time Management','Project Coordination','Communication']]
   ];
   const tabs = document.getElementById('tabs'), panel = document.getElementById('panel');
